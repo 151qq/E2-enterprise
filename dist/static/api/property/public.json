@@ -1,0 +1,13 @@
+{
+  "statusCode": 0,
+  "datas": {
+    "id": 0,
+    "public": [
+      "/static/images/img1.png",
+      "/static/images/img1.png",
+      "/static/images/img1.png",
+      "/static/images/img1.png"
+    ]
+  },
+  "mess": ""
+}

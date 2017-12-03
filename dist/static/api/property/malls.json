@@ -1,0 +1,18 @@
+{
+    "statusCode": 0,
+    "result": [
+        {
+            "id": 0,
+            "typeName": "商圈一"
+        },
+        {
+            "id": 1,
+            "typeName": "商圈二"
+        },
+        {
+            "id": 2,
+            "typeName": "商圈三"
+        }
+    ],
+    "mess": ""
+}

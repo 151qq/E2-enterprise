@@ -1,0 +1,118 @@
+{
+  "statusCode": 0,
+  "result": {
+    "area": [
+      {
+        "city": "海淀",
+        "county": [
+          "上庄镇",
+          "王平镇"
+        ]
+      },
+      {
+        "city": "朝阳",
+        "county": [
+          "上镇",
+          "平镇"
+        ]
+      }
+    ],
+    "propertys": [
+      {
+        "id": 0,
+        "typeName": "物业类型一"
+      },
+      {
+        "id": 1,
+        "typeName": "物业类型二"
+      },
+      {
+        "id": 2,
+        "typeName": "物业类型三"
+      }
+    ],
+    "floors": [
+      {
+        "id": 0,
+        "typeName": "地板类型一"
+      },
+      {
+        "id": 1,
+        "typeName": "地板类型二"
+      },
+      {
+        "id": 2,
+        "typeName": "地板类型三"
+      }
+    ],
+    "level": [
+      {
+        "id": 0,
+        "typeName": "超甲"
+      },
+      {
+        "id": 1,
+        "typeName": "甲级"
+      },
+      {
+        "id": 2,
+        "typeName": "乙级"
+      },
+      {
+        "id": 3,
+        "typeName": "丙级及一下"
+      }
+    ],
+    "rent": [
+      {
+        "id": 0,
+        "typeName": ">20"
+      },
+      {
+        "id": 1,
+        "typeName": "20~15"
+      },
+      {
+        "id": 2,
+        "typeName": "15~10"
+      },
+      {
+        "id": 3,
+        "typeName": "10~5"
+      },
+      {
+        "id": 3,
+        "typeName": "5以下"
+      }
+    ],
+    "hold": [
+      {
+        "id": 0,
+        "typeName": "整体持有"
+      },
+      {
+        "id": 1,
+        "typeName": "散售"
+      }
+    ],
+    "measure": [
+      {
+        "id": 0,
+        "typeName": ">10万平方米"
+      },
+      {
+        "id": 1,
+        "typeName": "8~10万平方米"
+      },
+      {
+        "id": 2,
+        "typeName": "5~8万平方米"
+      },
+      {
+        "id": 3,
+        "typeName": "<3万平方米"
+      }
+    ]
+  },
+  "mess": ""
+}

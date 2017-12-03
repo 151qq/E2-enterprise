@@ -1,0 +1,23 @@
+{
+  "statusCode": 0,
+  "datas": {
+    "id": 0,
+    "rents": [
+        {   
+            "id": 1,
+            "date": "2017-09-09",
+            "priceT": 123,
+            "priceM": 234,
+            "priceB": 456
+        },
+        {   
+            "id": 2,
+            "date": "2017-09-09",
+            "priceT": 123,
+            "priceM": 234,
+            "priceB": 456
+        }
+    ]
+  },
+  "mess": ""
+}
