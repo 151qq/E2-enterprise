@@ -282,6 +282,10 @@ export default {
 
         getRolesAllType: platform + 'role/findRoleUserByRoleCode.json',
         deleteRoleById: platform + 'role/deleteRoleUser.json',
-        addRoleByType: platform + 'role/setRoleUserByRoleCode.json'
+        addRoleByType: platform + 'role/setRoleUserByRoleCode.json',
+
+        registerMember: platform + 'member/registerMember.json',
+        searchMemberPageResult: platform + 'member/searchMemberPageResult.json',
+        deleteMember: platform + 'member/setMemberStatusById.json'
     }
 }

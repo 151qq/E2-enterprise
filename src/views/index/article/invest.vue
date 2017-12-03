@@ -275,24 +275,24 @@
             <template>
                 <div class="line-bold"></div>
                 <el-collapse-item class="formStyle" title="企业管理员" name="3">
-                    <span class="link-btn" @click="addRole('enterprise_editor')">新增</span>
+                    <span class="link-btn" @click="addRole">新增</span>
                     <el-table
-                        :data="roleList.enterprise_editor"
+                        :data="roleList"
                         border
                         style="width: 100%">
                         <el-table-column
-                          prop="userLoginName"
+                          prop="memberCname"
                           label="用户名">
                         </el-table-column>
                         <el-table-column
-                          prop="userMobile"
+                          prop="memberMobile"
                           label="手机号">
                         </el-table-column>
                         <el-table-column
                           label="操作"
                           width="80">
                           <template scope="scope">
-                            <i class="el-icon-delete2" @click="deleteRole(scope.row, 'enterprise_editor')"></i>
+                            <i class="el-icon-delete2" @click="deleteRole(scope.row)"></i>
                           </template>
                         </el-table-column>
                     </el-table>
@@ -303,11 +303,11 @@
             <el-form :label-position="'left'">
                 <el-form-item label="用户名" :label-width="'80px'">
                   <el-input class="table-input-box" size="small"
-                        v-model="addRoleData.userName"></el-input>
+                        v-model="addRoleData.memberCname"></el-input>
                 </el-form-item>
                 <el-form-item label="手机号" :label-width="'80px'">
                   <el-input class="table-input-box" size="small"
-                        v-model="addRoleData.userTel"></el-input>
+                        v-model="addRoleData.memberMobile"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -383,9 +383,7 @@
                 },
                 typeKey: '',
                 enterpriseCreditLevelList: [],
-                roleList: {
-                    enterprise_editor: []
-                },
+                roleList: [],
                 isAddRole: false,
                 addRoleData: {}
             }
@@ -422,58 +420,57 @@
             addRole (typeKey) {
                 this.addRoleData = {
                     enterpriseCode: this.$route.query.code,
-                    roleCode: typeKey,
-                    userName: '',
-                    userTel: ''
+                    memberCname: '',
+                    memberMobile: ''
                 }
 
                 this.isAddRole = true
             },
             confirmAddRole () {
-                if (this.addRoleData.userTel.trim() == '' || !(/^1[3|4|5|8][0-9]\d{4,8}$/).test(this.addRoleData.userTel.trim())) {
+                if (this.addRoleData.memberMobile.trim() == '' || !(/^1[3|4|5|8][0-9]\d{4,8}$/).test(this.addRoleData.memberMobile.trim())) {
                     this.$message.error('请输入11位注册手机号')
                     return
                 }
 
                 util.request({
                     method: 'post',
-                    interface: 'addRoleByType',
+                    interface: 'registerMember',
                     data: this.addRoleData
                 }).then(res => {
                     if (res.result.success == '1') {
-                        this.getRoles(this.addRoleData.roleCode)
+                        this.getRoles()
                         this.isAddRole = false
                     } else {
                         this.$message.error(res.result.message)
                     }
                 })
             },
-            getRoles (type) {
+            getRoles () {
                 util.request({
-                    method: 'get',
-                    interface: 'getRolesAllType',
+                    method: 'post',
+                    interface: 'searchMemberPageResult',
                     data: {
-                        roleCode: type
+                        enterpriseCode: this.$route.query.code
                     }
                 }).then(res => {
                     if (res.result.success == '1') {
-                        this.roleList[type] = res.result.result
+                        this.roleList = res.result.result
                     } else {
                         this.$message.error(res.result.message)
                     }
                 })
             },
-            deleteRole (item, roleCode) {
+            deleteRole (item) {
                 util.request({
                     method: 'post',
-                    interface: 'deleteRoleById',
+                    interface: 'deleteMember',
                     data: {
-                        roleCode: roleCode,
-                        userTel: item.userMobile
+                        id: item.id,
+                        memberStatus: '-1'
                     }
                 }).then(res => {
                     if (res.result.success == '1') {
-                        this.getRoles(roleCode)
+                        this.getRoles()
                     } else {
                         this.$message.error(res.result.message)
                     }
@@ -481,7 +478,7 @@
             },
             getAllData () {
                 this.getBase()
-                this.getRoles('enterprise_editor')
+                this.getRoles()
             },
             getBase () {
                 util.request({

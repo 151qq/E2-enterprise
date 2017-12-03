@@ -2,16 +2,9 @@
     <div class="wrap">
         <div class="loginBox">
             <div class="l">
-                <swiper :options="swiperOption" ref="mySwiper">
-                  <!-- slides -->
-                  <swiper-slide v-for="item in swiperData"><img :src="item.picUrl"></swiper-slide>
-                  <!-- Optional controls -->
-                </swiper>
-
-                <div class="swiper-pagination swiper-pagination-bullets"></div>
+                <img src="/static/images/ip_big1.jpg">
             </div>
             <div class="r">
-                <div class="message-box">欢迎来到商房云管理平台。通过商房云管理平台。物业管理员可以创建、更新物业信息；企业管理员可以创建和管理企业信息；证券管理员可以创建和更新证券信息。请使用您的手机号和商房云管理平台密码登录。如果您无法登录，请主动联系商房云平台的运营经理，请其为您创建账号、设置初始化密码和相应的权限。</div>
                 <el-form class="login-box" :label-position="'left'" label-width="80px">
                     <el-form-item label="用户名称">
                         <el-input v-model="userLoginAccount"></el-input>
@@ -23,9 +16,10 @@
                         </div>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" @click="subBtn">登录</el-button>
+                        <el-button type="primary" @click="subBtn">企业登录</el-button>
                     </el-form-item>
                 </el-form>
+                <div class="message-box">欢迎来到商房云管理平台。通过商房云管理平台。企业管理员可以创建、更新本企业员工或客户的账号和密码；企业管理员由商房云的客户经理为企业管理员所在的企业创建，企业管理员自己无法更改和。如果需要更换企业管理员，请随时联系贵企业的商房云的客户经理。</div>
             </div>
         </div>
         <el-dialog
@@ -88,26 +82,10 @@
                 enterpriseIndustry: '',
                 userCname: '',
                 userPhone: '',
-                swiperData: [
-                    {picUrl: '/static/images/ip_big1.jpg'},
-                    {picUrl: '/static/images/ip_big2.jpg'},
-                    {picUrl: '/static/images/ip_big4.jpg'},
-                    {picUrl: '/static/images/ip_big3.jpg'}
-                ],
                 dialogVisible: false,
                 forgetData: {
                     tel: '',
                     password: ''
-                },
-                swiperOption: {
-                    // swiper options 所有的配置同swiper官方api配置
-                    direction: 'horizontal',
-                    mousewheelControl: true,
-                    observeParents: true,
-                    autoplay: 3000,
-                    initialSlide: 1,
-                    loop: true,
-                    pagination: '.swiper-pagination'
                 },
                 codeInput: '',
                 timer: null,
@@ -228,7 +206,11 @@
                     data: data
                 }).then((res) => {
                     if (res.result.success != '0') {
-                        window.location.href = 'index.html#/';
+                        if (res.result.result.enterpriseCode) {
+                            window.location.href = 'index.html#/index/invest?code=' + res.result.result.enterpriseCode
+                        } else {
+                            this.$message.error('用户名或密码不正确！');
+                        }
                     } else {
                         this.$message.error(res.result.message)
                     }

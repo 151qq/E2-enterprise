@@ -17,35 +17,19 @@ html, body, #app {
   width: 1160px;
   overflow: hidden;
   box-sizing: border-box;
-  padding: 125px 0 0;
+  padding: 130px 0 0;
   background: #383a4c;
   margin: auto;
 
   .l {
     width: 756px;
+    height: 426px;
     overflow: hidden;
     float: left;
 
-    .swiper-pagination {
-      position: static;
+    img {
       display: block;
-      margin-top: 20px;
-      text-align: center;
-
-      .swiper-pagination-bullet {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        margin: 0 6px;
-        background: #7d7f8a;
-        box-shadow: 0 1px 1px 0 #000000 inset;
-        cursor: pointer;
-      }
-
-      .swiper-pagination-bullet-active {
-        background: #64a0d7;
-        box-shadow: 0 1px 1px 0 #f0f0f0 inset;
-      }
+      width: 100%;
     }
   }
 
@@ -60,7 +44,7 @@ html, body, #app {
     box-shadow: 0 0 10px 1px #1f1e1e;
 
     .login-box {
-      margin-top: 30px;
+      
     }
 
     .el-form-item__label {
@@ -99,6 +83,7 @@ html, body, #app {
       font-size: 14px;
       color: #75778d;
       line-height: 26px;
+      margin-top: 30px;
     }
   }
 }
