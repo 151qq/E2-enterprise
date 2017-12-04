@@ -1,6 +1,6 @@
-webpackJsonp([3],{
+webpackJsonp([0],{
 
-/***/ 206:
+/***/ 183:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10261,17 +10261,17 @@ return jQuery;
 
 /***/ }),
 
-/***/ 219:
+/***/ 184:
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
-  __webpack_require__(372)
+  __webpack_require__(228)
 }
-var Component = __webpack_require__(31)(
+var Component = __webpack_require__(24)(
   /* script */
-  __webpack_require__(330),
+  __webpack_require__(220),
   /* template */
-  __webpack_require__(422),
+  __webpack_require__(236),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -10285,51 +10285,19 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 249:
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAVFJREFUOBHtU7FKA0EQnbe33uWwUxCEWGhjoYXYCTZ2VkEUUglKECwkSArLyCFYCGKRxjSCWtrYiZCf0B+wECwUtBITk1zGmYSFyxFJYevCse/NezM33M2Afjml0ln40f58IiCeHpudiaJ8c5AV28WjQgc0lxYNY7RDvKtxGJwzcz3tAejRSnKOmJZEnBDruwQbamQII7x0k5hygnuQKSPqOIBXyZsy15XDNY/siqoGtHlVKWdDP7PIHtYV62PgbQQj4YJiGCqo13p2WXjeKEmfxnd9n9p84+Ixx7eNVn3P8eRtk8Rhad8Hc+A4iAMw+Y4n74EdJA3D8H8B+fXDPtIw/c8F+uZAxrjLmbw7mPjLvV1moErW3itXDztBueKd4km2Sc1nYQ8yNLWEPgBiVXZhPvTDyerpwVtvQ8QmW3nMwJbAvq7SFZi4ZQgXl5VypNoP2CJdlBywUMgAAAAASUVORK5CYII="
-
-/***/ }),
-
-/***/ 250:
+/***/ 216:
 /***/ (function(module, exports, __webpack_require__) {
 
-function injectStyle (ssrContext) {
-  __webpack_require__(263)
-}
-var Component = __webpack_require__(31)(
-  /* script */
-  __webpack_require__(259),
-  /* template */
-  __webpack_require__(266),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-
-module.exports = Component.exports
-
+module.exports = __webpack_require__.p + "static/img/img-default.5b7a3ae.jpg";
 
 /***/ }),
 
-/***/ 251:
+/***/ 217:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_common_util__ = __webpack_require__(50);
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_common_util__ = __webpack_require__(46);
 //
 //
 //
@@ -10346,185 +10314,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['isAdd'],
-    data: function data() {
-        return {
-            reportDatas: {
-                name: ''
-            }
-        };
-    },
-
-    methods: {
-        initData: function initData() {
-            this.reportDatas.name = '';
-        },
-        confirmHandle: function confirmHandle() {
-            if (this.reportDatas.title == '') {
-                this.$message({
-                    message: '二级目录名称不能为空！',
-                    type: 'warning'
-                });
-                return false;
-            }
-            if (this.reportDatas.title > 25) {
-                this.$message({
-                    message: '二级目录名称最多25个字！',
-                    type: 'warning'
-                });
-                return false;
-            }
-
-            this.$emit('addDirs', this.reportDatas);
-        }
+  props: ['path', 'titleName', 'idName', 'width', 'isDelete', 'placeHolder', 'isOperate'],
+  data() {
+    return {
+      curPath: '',
+      curTitle: ''
+    };
+  },
+  mounted() {
+    this.curPath = this.path;
+    this.curTitle = this.titleName;
+  },
+  watch: {
+    path() {
+      this.curPath = this.path;
+      this.curTitle = this.titleName;
     }
+  },
+  methods: {
+    changeTitle() {
+      var data = {
+        url: this.curPath,
+        title: this.curTitle
+      };
+
+      this.$emit('changeImg', data);
+    },
+    postImg(e) {
+      var opotion = {
+        url: 'uploadArticleAreaImage',
+        event: e,
+        data: {
+          fileCode: localStorage.getItem('id')
+        }
+      };
+
+      __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].uploadFile(opotion).then(res => {
+        let imgUrl = res.result.result[0];
+        this.curPath = imgUrl;
+        var data = {
+          url: this.curPath,
+          title: this.curTitle
+        };
+        this.$emit('changeImg', data);
+      });
+    }
+  }
 });
 
 /***/ }),
 
-/***/ 252:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(205)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".add-box-report .el-dialog{width:520px}.add-box-report .baseInput{float:left;margin-bottom:20px}.add-box-report .baseInput>span{float:left;width:65px;font-size:14px;color:#1f2d3d;line-height:30px}.add-box-report .baseInput .input-box{float:left;width:235px}.add-box-report .baseInput .input-box input{height:30px}.add-box-report .changeImg{margin:0}.add-box-report .changeImg img{display:block;width:100%;height:auto}.add-box-report .changeImg .default-img{width:100%;height:150px;background:#f0f0f0}.add-box-report .changeImg p{width:190px;float:left;margin:20px 30px 0 0}.add-box-report .changeImg p label{display:block;width:100%;height:36px;background:#20a0ff;font-size:12px;color:#fff;line-height:36px;text-align:center;border:none;padding:0;border-radius:3px;cursor:pointer}.add-box-report .changeImg p input{display:none}.add-box-report .changeImg .su-btn{float:right;width:190px;height:36px;margin-top:20px;background:#20a0ff;font-size:12px;color:#fff;line-height:36px;text-align:center;border:none;padding:0;border-radius:3px}.add-box-report .bigB .input-box{width:415px}.add-box-report .bigB .input-box .el-select{width:575px}.add-box-report .clear{clear:both}", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 253:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(252);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(248)("111a208e", content, true);
-
-/***/ }),
-
-/***/ 254:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "static/img/img-default.5b7a3ae.jpg";
-
-/***/ }),
-
-/***/ 255:
-/***/ (function(module, exports, __webpack_require__) {
-
-function injectStyle (ssrContext) {
-  __webpack_require__(253)
-}
-var Component = __webpack_require__(31)(
-  /* script */
-  __webpack_require__(251),
-  /* template */
-  __webpack_require__(256),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 256:
-/***/ (function(module, exports) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('section', {
-    staticClass: "add-box-report"
-  }, [_c('el-dialog', {
-    attrs: {
-      "title": "添加商圈",
-      "visible": _vm.isAdd.value
-    },
-    on: {
-      "update:visible": function($event) {
-        _vm.isAdd.value = $event
-      }
-    }
-  }, [_c('div', {
-    staticClass: "clear"
-  }), _vm._v(" "), _c('section', {
-    staticClass: "baseInput bigB"
-  }, [_c('span', [_vm._v("标题")]), _vm._v(" "), _c('el-input', {
-    staticClass: "input-box",
-    attrs: {
-      "placeholder": "请输入内容"
-    },
-    model: {
-      value: (_vm.reportDatas.name),
-      callback: function($$v) {
-        _vm.reportDatas.name = $$v
-      },
-      expression: "reportDatas.name"
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "clear"
-  }), _vm._v(" "), _c('div', {
-    staticClass: "dialog-footer",
-    attrs: {
-      "slot": "footer"
-    },
-    slot: "footer"
-  }, [_c('el-button', {
-    on: {
-      "click": function($event) {
-        _vm.isAdd.value = false
-      }
-    }
-  }, [_vm._v("取 消")]), _vm._v(" "), _c('el-button', {
-    attrs: {
-      "type": "primary"
-    },
-    on: {
-      "click": _vm.confirmHandle
-    }
-  }, [_vm._v("确 定")])], 1)])], 1)
-},staticRenderFns: []}
-
-/***/ }),
-
-/***/ 257:
-/***/ (function(module, exports, __webpack_require__) {
-
-function injectStyle (ssrContext) {
-  __webpack_require__(262)
-}
-var Component = __webpack_require__(31)(
-  /* script */
-  __webpack_require__(258),
-  /* template */
-  __webpack_require__(265),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 258:
+/***/ 218:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10543,7 +10383,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         index: { type: Number },
         editorType: { type: String }
     },
-    data: function data() {
+    data() {
         return {
             config: {
                 toolbars: [['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', '|', 'lineheight', '|', 'fontfamily', 'fontsize', '|', 'emotion', 'map', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'horizontal', '|', 'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|', 'undo', 'redo']]
@@ -10552,14 +10392,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             isfirst: true
         };
     },
-    mounted: function mounted() {
+    mounted() {
         if (this.editorType == 'table') {
             this.config.toolbars = [['inserttable', 'deletetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|', 'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'pasteplain', '|', 'forecolor', 'backcolor']];
         } else {
             this.config.toolbars = [['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist']];
         }
 
-        var _this = this;
+        const _this = this;
         this.editor = window.UE.getEditor(this.editorId, this.config);
         this.editor.addListener("ready", function () {
             // console.log(_this.content, 'contentR')
@@ -10574,7 +10414,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.$emit('setContent', data);
         });
     },
-
     // watch: {
     //     content () {
     //         if (this.editor && this.isfirst) {
@@ -10583,21 +10422,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //         }
     //     }
     // },
-    destroyed: function destroyed() {
+    destroyed() {
         this.editor.destroy();
     }
 });
 
 /***/ }),
 
-/***/ 259:
+/***/ 219:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Jquery__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Jquery__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_Jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_common_util__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_common_util__ = __webpack_require__(46);
 //
 //
 //
@@ -10642,37 +10481,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['path', 'num', 'noDel', 'idx', 'isBtn', 'bgPath', 'noSave', 'idName', 'isHouseId', 'isOperate'],
-  data: function data() {
+  data() {
     return {
       isShow: false,
       curPath: '',
       idFor: ''
     };
   },
-  mounted: function mounted() {
+  mounted() {
     this.idFor = this.idName ? this.idName : 'upload-file-single';
     this.curPath = this.path;
   },
-
   watch: {
-    path: function path() {
+    path() {
       this.curPath = this.path;
     },
-    idName: function idName() {
+    idName() {
       this.idFor = this.idName ? this.idName : 'upload-file-single';
     }
   },
   methods: {
-    deleImg: function deleImg() {
+    deleImg() {
       var data = {
         index: this.num,
         id: this.idx
       };
       this.$emit('delImg', data);
     },
-    postImg: function postImg(e) {
-      var _this = this;
-
+    postImg(e) {
       var opotion = {
         url: 'uploadArticleAreaImage',
         event: e
@@ -10683,18 +10519,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         opotion.data.fileCode = localStorage.getItem('id');
       }
 
-      __WEBPACK_IMPORTED_MODULE_1__assets_common_util__["a" /* default */].uploadFile(opotion).then(function (res) {
-        var imgUrl = res.result.result[0];
-        _this.curPath = imgUrl;
+      __WEBPACK_IMPORTED_MODULE_1__assets_common_util__["a" /* default */].uploadFile(opotion).then(res => {
+        let imgUrl = res.result.result[0];
+        this.curPath = imgUrl;
         var data = {
-          index: _this.num,
-          url: _this.curPath,
-          id: _this.idx
+          index: this.num,
+          url: this.curPath,
+          id: this.idx
         };
-        _this.$emit('changeImg', data);
+        this.$emit('changeImg', data);
       });
     },
-    resetPath: function resetPath() {
+    resetPath() {
       this.curPath = '';
       var data = {
         index: this.num,
@@ -10703,7 +10539,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
       this.$emit('changeImg', data);
     },
-    savePath: function savePath() {
+    savePath() {
       this.$emit('saveImg');
     }
   }
@@ -10711,355 +10547,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 260:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(205)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".edui-default .edui-editor-bottomContainer{display:none}", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 261:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(205)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".upload-box{overflow:hidden;position:relative;cursor:pointer}.upload-box .img-big{cursor:pointer}.upload-box .img-big,.upload-box .img-big img{display:block;width:100%;height:auto}.upload-box .ben-input{display:none}.upload-box .op-btn{float:right;margin:10px 0 0 10px}", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 262:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(260);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(248)("5d9be1f8", content, true);
-
-/***/ }),
-
-/***/ 263:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(261);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(248)("522b29e8", content, true);
-
-/***/ }),
-
-/***/ 264:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "static/img/page-img.9008604.jpg";
-
-/***/ }),
-
-/***/ 265:
-/***/ (function(module, exports) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    attrs: {
-      "id": _vm.editorId,
-      "type": "text/plain"
-    }
-  })])
-},staticRenderFns: []}
-
-/***/ }),
-
-/***/ 266:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('section', {
-    staticClass: "upload-box"
-  }, [_c('label', {
-    staticClass: "img-big",
-    attrs: {
-      "for": _vm.idFor
-    }
-  }, [(!_vm.curPath && !_vm.bgPath) ? _c('img', {
-    attrs: {
-      "src": __webpack_require__(254)
-    }
-  }) : _vm._e(), _vm._v(" "), (!_vm.curPath && _vm.bgPath) ? _c('img', {
-    attrs: {
-      "src": __webpack_require__(264)
-    }
-  }) : _c('img', {
-    staticClass: "img-big",
-    attrs: {
-      "src": _vm.curPath
-    }
-  })]), _vm._v(" "), (_vm.isOperate) ? _c('input', {
-    staticClass: "ben-input",
-    attrs: {
-      "type": "file",
-      "id": _vm.idFor
-    },
-    on: {
-      "change": function($event) {
-        _vm.postImg($event)
-      }
-    }
-  }) : _vm._e(), _vm._v(" "), (_vm.isBtn) ? _c('section', [(!_vm.noSave) ? _c('el-button', {
-    staticClass: "op-btn",
-    attrs: {
-      "type": "info",
-      "plain": true,
-      "size": "small",
-      "icon": "document"
-    },
-    on: {
-      "click": _vm.savePath
-    }
-  }, [_vm._v("保存")]) : _vm._e(), _vm._v(" "), (!_vm.noDel) ? _c('el-button', {
-    staticClass: "op-btn",
-    attrs: {
-      "type": "danger",
-      "plain": true,
-      "size": "small",
-      "icon": "delete"
-    },
-    on: {
-      "click": _vm.deleImg
-    }
-  }, [_vm._v("删除")]) : _vm._e(), _vm._v(" "), (!_vm.noDel) ? _c('el-button', {
-    staticClass: "op-btn",
-    attrs: {
-      "type": "danger",
-      "plain": true,
-      "size": "small",
-      "icon": "delete"
-    },
-    on: {
-      "click": _vm.deleImg
-    }
-  }, [_vm._v("移动")]) : _vm._e()], 1) : _vm._e()])])
-},staticRenderFns: []}
-
-/***/ }),
-
-/***/ 275:
+/***/ 220:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_common_util__ = __webpack_require__(50);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['path', 'titleName', 'idName', 'width', 'isDelete', 'placeHolder', 'isOperate'],
-  data: function data() {
-    return {
-      curPath: '',
-      curTitle: ''
-    };
-  },
-  mounted: function mounted() {
-    this.curPath = this.path;
-    this.curTitle = this.titleName;
-  },
-
-  watch: {
-    path: function path() {
-      this.curPath = this.path;
-      this.curTitle = this.titleName;
-    }
-  },
-  methods: {
-    changeTitle: function changeTitle() {
-      var data = {
-        url: this.curPath,
-        title: this.curTitle
-      };
-
-      this.$emit('changeImg', data);
-    },
-    postImg: function postImg(e) {
-      var _this = this;
-
-      var opotion = {
-        url: 'uploadArticleAreaImage',
-        event: e,
-        data: {
-          fileCode: localStorage.getItem('id')
-        }
-      };
-
-      __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].uploadFile(opotion).then(function (res) {
-        var imgUrl = res.result.result[0];
-        _this.curPath = imgUrl;
-        var data = {
-          url: _this.curPath,
-          title: _this.curTitle
-        };
-        _this.$emit('changeImg', data);
-      });
-    }
-  }
-});
-
-/***/ }),
-
-/***/ 278:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(205)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".ewm-upload-box{display:inline-block;cursor:pointer;border:1px solid #f5f5f5;border-radius:3px}.ewm-upload-box .img-big{display:block;width:100%;height:160px}.ewm-upload-box .input-u{display:none}.ewm-upload-box .title-box{border:none;padding:0;margin:0;width:100%;border-top:1px solid #f5f5f5;display:block;font-size:14px;text-align:center;line-height:36px}.ewm-upload-box .op-btn{float:right;margin:10px 0 0 10px}", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 282:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(278);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(248)("63b621ec", content, true);
-
-/***/ }),
-
-/***/ 302:
-/***/ (function(module, exports, __webpack_require__) {
-
-function injectStyle (ssrContext) {
-  __webpack_require__(282)
-}
-var Component = __webpack_require__(31)(
-  /* script */
-  __webpack_require__(275),
-  /* template */
-  __webpack_require__(304),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 304:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "ewm-upload-box",
-    style: ({
-      width: _vm.width
-    })
-  }, [_c('label', {
-    attrs: {
-      "for": _vm.idName
-    }
-  }, [(!_vm.curPath) ? _c('img', {
-    staticClass: "img-big",
-    attrs: {
-      "src": __webpack_require__(254)
-    }
-  }) : _c('img', {
-    staticClass: "img-big",
-    attrs: {
-      "src": _vm.curPath
-    }
-  })]), _vm._v(" "), (_vm.isOperate) ? _c('input', {
-    staticClass: "input-u",
-    attrs: {
-      "id": _vm.idName,
-      "type": "file",
-      "name": ""
-    },
-    on: {
-      "change": _vm.postImg
-    }
-  }) : _vm._e(), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.curTitle),
-      expression: "curTitle"
-    }],
-    staticClass: "title-box",
-    attrs: {
-      "placeholder": _vm.placeHolder
-    },
-    domProps: {
-      "value": (_vm.curTitle)
-    },
-    on: {
-      "input": [function($event) {
-        if ($event.target.composing) { return; }
-        _vm.curTitle = $event.target.value
-      }, _vm.changeTitle]
-    }
-  })])
-},staticRenderFns: []}
-
-/***/ }),
-
-/***/ 316:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_common_util__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_common_upload__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_common_util__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_common_upload__ = __webpack_require__(232);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_common_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_common_upload__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_common_ewm_upload__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_common_ewm_upload__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_common_ewm_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_common_ewm_upload__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_common_ueditor__ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_common_ueditor__ = __webpack_require__(231);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_common_ueditor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_common_ueditor__);
 //
 //
@@ -11380,86 +10878,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -11467,8 +10885,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['listInfo', 'articleInfo'],
-    data: function data() {
+    data() {
         return {
             base: {
                 id: '',
@@ -11509,7 +10926,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             isBase: false,
             activeNames: ['1'],
             pickerPre: {
-                disabledDate: function disabledDate(time) {
+                disabledDate(time) {
                     return time.getTime() >= Date.now();
                 }
             },
@@ -11520,7 +10937,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 finance_org_type: [],
                 finance_market: []
             },
-            timer: null,
             typeData: {
                 finance_org_type_0: '',
                 finance_org_type_1: 'propertys_investmen_type',
@@ -11528,196 +10944,171 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             typeKey: '',
             enterpriseCreditLevelList: [],
-            isId: false,
-            roleList: {
-                roleQYGL: [],
-                roleBGGL: [],
-                roleSQGL: [],
-                roleWYGL: [],
-                roleWYJL: [],
-                roleZQCP: []
-            },
+            roleList: [],
             isAddRole: false,
-            addRoleData: {},
-            hisUser: ''
+            addRoleData: {}
         };
     },
-    mounted: function mounted() {
+    mounted() {
         var houseColl = localStorage.getItem("houseColl");
         if (houseColl) {
             this.activeNames = houseColl.split(',');
         }
-        document.title = '投资机构';
+        document.title = '企业信息';
 
+        this.getAllData();
         this.getTypes();
         this.getCitys();
         this.getEnterpriseCreditLevel();
     },
-
-    computed: {
-        isOperate: function isOperate() {
-            return this.hisUser && this.base.unitChain && this.hisUser == this.base.unitChain;
-        },
-
-        // 企业管理
-        isQYGL: function isQYGL() {
-            var type = this.base.enterpriseType;
-            var arr = ['finance_org_type_0'];
-            return type && arr.indexOf(type) > -1;
-        },
-
-        // 报告管理
-        isBGGL: function isBGGL() {
-            var type = this.base.enterpriseType;
-            var typeIndustry = this.base.enterpriseIndustry;
-            var arr = ['finance_org_type_0', 'propertys_agent_type_3', 'propertys_agent_type_1', 'propertys_agent_type_5'];
-            return typeIndustry && arr.indexOf(typeIndustry) > -1 || type && arr.indexOf(type) > -1;
-        },
-
-        // 物业管理
-        isWYGL: function isWYGL() {
-            var type = this.base.enterpriseType;
-            var arr = ['finance_org_type_0'];
-            return type && arr.indexOf(type) > -1;
-        },
-
-        // 证券产品管理
-        isZQCP: function isZQCP() {
-            var type = this.base.enterpriseType;
-            var arr = ['finance_org_type_0'];
-            return type && arr.indexOf(type) > -1;
-        }
-    },
     methods: {
-        wxPulicImg: function wxPulicImg(data) {
+        wxPulicImg(data) {
             this.base.enterpriseEntprisewechatQrcode = data.url;
             this.base.enterprisePubwechatAccount = data.title;
         },
-        twitterImg: function twitterImg(data) {
+        twitterImg(data) {
             this.base.enterpriseTwitterQrcode = data.url;
             this.base.enterpriseTwitterAccount = data.title;
         },
-        facebookImg: function facebookImg(data) {
+        facebookImg(data) {
             this.base.enterpriseFacebookQrcode = data.url;
             this.base.enterpriseFacebookAccount = data.title;
         },
-        wbImg: function wbImg(data) {
+        wbImg(data) {
             this.base.enterpriseSinamicroblogQrcode = data.url;
             this.base.enterpriseSinamicorblogAccount = data.title;
         },
-        addRole: function addRole(typeKey) {
+        addRole(typeKey) {
             this.addRoleData = {
-                roleType: typeKey,
-                userName: '',
-                userTel: ''
+                enterpriseCode: this.$route.query.code,
+                memberCname: '',
+                memberMobile: ''
             };
 
             this.isAddRole = true;
         },
-        confirmAddRole: function confirmAddRole(item) {
-            this.roleList[item.roleType].push(item);
-            this.isAddRole = false;
-        },
-        deleteRole: function deleteRole(item) {
-            alert('toDo ' + item.roleType);
-        },
-        getAllData: function getAllData(data) {
-            this.isId = data.id !== null;
-            if (!this.isId) {
-                return false;
+        confirmAddRole() {
+            if (this.addRoleData.memberMobile.trim() == '' || !/^1[3|4|5|8][0-9]\d{4,8}$/.test(this.addRoleData.memberMobile.trim())) {
+                this.$message.error('请输入11位注册手机号');
+                return;
             }
 
-            this.typeKey = this.typeData[localStorage.getItem('dirCode')];
-            this.isBase = false;
+            __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].request({
+                method: 'post',
+                interface: 'registerMember',
+                data: this.addRoleData
+            }).then(res => {
+                if (res.result.success == '1') {
+                    this.getRoles();
+                    this.isAddRole = false;
+                } else {
+                    this.$message.error(res.result.message);
+                }
+            });
+        },
+        getRoles() {
+            __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].request({
+                method: 'post',
+                interface: 'searchMemberPageResult',
+                data: {
+                    enterpriseCode: this.$route.query.code
+                }
+            }).then(res => {
+                if (res.result.success == '1') {
+                    this.roleList = res.result.result;
+                } else {
+                    this.$message.error(res.result.message);
+                }
+            });
+        },
+        deleteRole(item) {
+            __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].request({
+                method: 'post',
+                interface: 'deleteMember',
+                data: {
+                    id: item.id,
+                    memberStatus: '-1'
+                }
+            }).then(res => {
+                if (res.result.success == '1') {
+                    this.getRoles();
+                } else {
+                    this.$message.error(res.result.message);
+                }
+            });
+        },
+        getAllData() {
             this.getBase();
-
-            if (this.timer) {
-                clearInterval(this.timer);
-            }
-
-            // this.timer = setInterval(() => {
-            //     this.saveAll()
-            // }, 180000)
+            this.getRoles();
         },
-        getBase: function getBase() {
-            var _this = this;
-
+        getBase() {
             __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].request({
                 method: 'get',
                 interface: 'getInvestBase',
                 data: {
-                    enterpriseCode: localStorage.getItem('id')
+                    enterpriseCode: this.$route.query.code
                 }
-            }).then(function (res) {
+            }).then(res => {
                 if (res.result.success == '0') {
-                    setTimeout(function () {
-                        _this.isBase = true;
-                    }, 0);
-                    _this.$message.error(res.result.message);
+                    this.$message.error(res.result.message);
                     return;
                 }
 
-                _this.hisUser = res.result.request;
-                _this.base = res.result.result;
+                this.base = res.result.result;
+                this.typeKey = this.typeData[this.base.enterpriseType];
 
-                setTimeout(function () {
-                    _this.isBase = true;
+                setTimeout(() => {
+                    this.isBase = true;
                 }, 0);
             });
         },
-        getTypes: function getTypes() {
-            var _this2 = this;
-
+        getTypes() {
             __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].request({
                 method: 'get',
                 interface: 'investTypes',
                 data: {}
-            }).then(function (res) {
+            }).then(res => {
                 if (res.result.success == '1') {
-                    _this2.types = res.result.result;
+                    this.types = res.result.result;
                 } else {
-                    _this2.$message.error(res.result.message);
+                    this.$message.error(res.result.message);
                 }
             });
         },
-        getEnterpriseCreditLevel: function getEnterpriseCreditLevel() {
-            var _this3 = this;
-
+        getEnterpriseCreditLevel() {
             __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].request({
                 method: 'get',
                 interface: 'findDictionaryByType',
                 data: {
                     typeCode: 'enterprise_credit_level'
                 }
-            }).then(function (res) {
-                _this3.enterpriseCreditLevelList = res.result.result;
+            }).then(res => {
+                this.enterpriseCreditLevelList = res.result.result;
             });
         },
-        getCitys: function getCitys() {
-            var _this4 = this;
-
+        getCitys() {
             __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].request({
                 method: 'get',
                 interface: 'getCitys',
                 data: {}
-            }).then(function (res) {
+            }).then(res => {
                 if (res.result.success == '1') {
                     var citys = [];
                     var posts = [];
 
-                    res.result.results.forEach(function (item) {
+                    res.result.results.forEach(item => {
                         citys = citys.concat(item.citys);
                         posts = posts.concat(item.posts);
                     });
 
-                    _this4.cityData = citys;
-                    _this4.postList = posts;
+                    this.cityData = citys;
+                    this.postList = posts;
                 } else {
-                    _this4.$message.error(res.result.message);
+                    this.$message.error(res.result.message);
                 }
             });
         },
-        cityChange: function cityChange() {
+        cityChange() {
             for (var i = 0, len = this.cityData.length; i < len; i++) {
                 if (this.cityData[i] == this.base.enterpriseLogisticCity) {
                     this.base.enterpriseLogisticZipcode = this.postList[i];
@@ -11725,20 +11116,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }
         },
-        checkWebSite: function checkWebSite() {
+        checkWebSite() {
             var webSite = this.base.enterpriseWebLink;
             this.base.enterpriseWebLink = webSite.replace(/[\u4e00-\u9fa5]/g, '');
         },
-        setContent: function setContent(data) {
+        setContent(data) {
             this.base.enterpriseDesc = data.content;
         },
-        collChange: function collChange() {
+        collChange() {
             localStorage.setItem("houseColl", this.activeNames);
         },
-        changeImg: function changeImg(data) {
+        changeImg(data) {
             this.base.enterpriseLogoUrl = data.url;
         },
-        formDataDate: function formDataDate(str) {
+        formDataDate(str) {
             var dateStr = new Date(str);
             var year = dateStr.getFullYear();
             var monthStr = dateStr.getMonth() + 1;
@@ -11747,9 +11138,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var day = dayStr < 10 ? '0' + dayStr : dayStr;
             return year + '-' + month + '-' + day;
         },
-        saveBase: function saveBase() {
-            var _this5 = this;
-
+        saveBase() {
             if (!this.base.enterpriseNameReg) {
                 this.$message({
                     message: '请填写机构简称！',
@@ -11822,24 +11211,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 method: 'post',
                 interface: 'saveInvestBase',
                 data: this.base
-            }).then(function (res) {
+            }).then(res => {
                 if (res.result.success == '1') {
-                    _this5.$parent.$refs.listBox.loadList('reload');
+                    this.$parent.$refs.listBox.loadList('reload');
                 } else {
-                    _this5.$message.error(res.result.message);
+                    this.$message.error(res.result.message);
                 }
             });
-        },
-        saveAll: function saveAll() {
-            // this.saveBase()
         }
     },
-    destroyed: function destroyed() {
-        if (this.timer) {
-            clearInterval(this.timer);
-        }
-    },
-
     components: {
         upload: __WEBPACK_IMPORTED_MODULE_1__components_common_upload___default.a,
         ewmUpload: __WEBPACK_IMPORTED_MODULE_2__components_common_ewm_upload___default.a,
@@ -11849,503 +11229,140 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 322:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_common_util__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_common_interfaces__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_addDir_vue__ = __webpack_require__(255);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_addDir_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_addDir_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_Jquery__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_Jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_Jquery__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      isfirst: true,
-      filterText: '',
-      treeData: [],
-      activeName: '0-0',
-      openeds: ['0'],
-      isAddTreeOne: false,
-      addFormOne: {
-        title: '',
-        id: '',
-        type: '',
-        enterpriseNameReg: ''
-      },
-      addDirIndex: ''
-    };
-  },
-
-  components: {
-    addDir: __WEBPACK_IMPORTED_MODULE_2__common_addDir_vue___default.a
-  },
-  mounted: function mounted() {
-    this.loadList();
-  },
-
-  computed: {
-    isAddInvest: function isAddInvest() {
-      var arrs = this.permission.split('');
-      return arrs[1] == '1';
-    },
-    isDelete: function isDelete() {
-      var arrs = this.permission.split('');
-      return arrs[2] == '1';
-    }
-  },
-  watch: {
-    filterText: function filterText(value) {
-      var opens = [];
-      if (value === '') {
-        var arrs = this.activeName.split('-');
-        opens = [arrs[0], arrs[0] + '-' + arrs[1]];
-        this.openeds = opens;
-        return false;
-      }
-
-      this.treeData.forEach(function (item1, index1) {
-        // 外层有，打开
-        if (item1.label.indexOf(value) > -1) {
-          opens.push(String(index1));
-        }
-
-        if (!item1.childNodes || !item1.childNodes.length) {
-          return false;
-        }
-        // 外层没有，内层有，也要打开外层
-        item1.childNodes.forEach(function (item2, index2) {
-          if (item2.enterpriseCname.indexOf(value) > -1) {
-            opens.push(String(index1));
-            opens.push(String(index1 + '-' + index2));
-          }
-        });
-      });
-      this.openeds = opens;
-    }
-  },
-  methods: {
-    loadList: function loadList(type) {
-      var _this = this;
-
-      var formData = {};
-      __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].request({
-        method: 'get',
-        interface: 'investTree',
-        data: formData
-      }).then(function (res) {
-        _this.permission = res.result.permission;
-        _this.treeData = res.result.result;
-
-        if (type) {
-          return false;
-        }
-
-        if (_this.treeData[0].childNodes.length) {
-          var id = _this.treeData[0].childNodes[0].enterpriseCode;
-          var dirCode = _this.treeData[0].dictKeyCode;
-
-          var data = {
-            id: id
-            // 设置页面ID，公编辑展示使用，防止直接输入地址相应错误
-          };localStorage.setItem("id", id);
-          localStorage.setItem("dirCode", dirCode);
-          _this.activeName = '0-0';
-          _this.$emit('getInfo', data);
-        } else {
-          var _data = {
-            id: null
-          };
-
-          localStorage.removeItem("id");
-          localStorage.removeItem("dirCode");
-          _this.$emit('getInfo', _data);
-        }
-      });
-    },
-    reloadList: function reloadList(newId) {
-      var _this2 = this;
-
-      __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].request({
-        method: 'get',
-        interface: 'investTree',
-        data: {}
-      }).then(function (res) {
-        _this2.permission = res.result.permission;
-        _this2.treeData = res.result.result;
-
-        var arrData = _this2.treeData[_this2.addDirIndex];
-
-        _this2.openeds = [String(_this2.addDirIndex)];
-        for (var i = 0, len = arrData.childNodes.length; i < len; i++) {
-          if (arrData.childNodes[i].enterpriseCode == newId) {
-            setTimeout(function () {
-              _this2.activeName = _this2.addDirIndex + '-' + i;
-            }, 0);
-            break;
-          }
-        }
-
-        var formData = {
-          id: newId
-          // 设置页面ID，公编辑展示使用，防止直接输入地址相应错误
-        };localStorage.setItem("id", newId);
-        localStorage.setItem("dirCode", arrData.dictKeyCode);
-        _this2.$emit('getInfo', formData);
-      });
-    },
-    setData: function setData(item1, index1) {
-      this.addFormOne.title = '';
-      this.addFormOne.enterpriseNameReg = '';
-      this.addFormOne.type = item1.dictKeyCode;
-      this.addDirIndex = index1;
-      this.isAddTreeOne = true;
-    },
-    confirmAdd: function confirmAdd() {
-      var _this3 = this;
-
-      // 其查查，添加，设置ID
-      if (!this.addFormOne.title) {
-        this.$message.error('企业机构名称不能为空！');
-        return;
-      }
-
-      if (!this.addFormOne.enterpriseNameReg) {
-        this.$message.error('企业机构简称不能为空！');
-        return;
-      }
-
-      if (!this.addFormOne.type) {
-        this.$message.error('请重新添加！');
-        return;
-      }
-
-      var formData = {
-        enterpriseCname: this.addFormOne.title,
-        enterpriseType: this.addFormOne.type,
-        enterpriseNameReg: this.addFormOne.enterpriseNameReg
-      };
-
-      __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].request({
-        method: 'post',
-        interface: 'saveInvestBase',
-        data: formData
-      }).then(function (res) {
-        // this.$parent.$refs.listBox.reloadList(res.result.result.id)
-        if (res.result.success == '1') {
-          _this3.isAddTreeOne = false;
-          _this3.addFormOne.id = res.result.result.enterpriseCode;
-          _this3.reloadList(_this3.addFormOne.id);
-        } else {
-          _this3.$message.error(res.result.message);
-        }
-      });
-    },
-    delItem: function delItem(id) {
-      var _this4 = this;
-
-      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(function () {
-        _this4.checkHtdAndHdAndFpi(id);
-      }).catch(function () {
-        _this4.$message({
-          type: 'info',
-          message: '已取消删除'
-        });
-      });
-    },
-    checkHtdAndHdAndFpi: function checkHtdAndHdAndFpi(id) {
-      var _this5 = this;
-
-      __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].request({
-        method: 'post',
-        interface: 'checkHtdAndHdAndFpi',
-        data: {
-          enterpriseCode: id
-        }
-      }).then(function (res) {
-        if (res.result.success == '1') {
-          var result = res.result.result;
-          var message = [];
-
-          if (result.financeProductInfoList && result.financeProductInfoList.length) {
-            result.financeProductInfoList.forEach(function (item) {
-              message.push(item.productCame);
-            });
-          }
-
-          if (result.houseTradeDetaillist && result.houseTradeDetaillist.length) {
-            result.houseTradeDetaillist.forEach(function (item) {
-              message.push(item.housesInfo.housesDesc + '->交易');
-            });
-          }
-
-          if (result.housesDetailList && result.housesDetailList.length) {
-            result.housesDetailList.forEach(function (item) {
-              message.push(item.housesInfo.housesDesc);
-            });
-          }
-
-          if (message.length) {
-            _this5.$message.error('该机构与（' + message.join('、') + '）关联，不能删除！');
-          } else {
-            _this5.deleteArticleById(id);
-          }
-        } else {
-          _this5.$message.error(res.result.message);
-        }
-      });
-    },
-    getInfo: function getInfo(code1, code2, index1, index2) {
-
-      var curIndex = index1 + '-' + index2;
-      if (this.activeName === curIndex) {
-        return false;
-      }
-      this.activeName = curIndex;
-      var data = {
-        id: code2
-        // 设置页面ID，公编辑展示使用，防止直接输入地址相应错误
-      };localStorage.setItem("id", code2);
-      localStorage.setItem("dirCode", code1);
-
-      this.$emit('getInfo', data);
-    },
-    deleteArticleById: function deleteArticleById(id) {
-      var _this6 = this;
-
-      __WEBPACK_IMPORTED_MODULE_0__assets_common_util__["a" /* default */].request({
-        method: 'post',
-        interface: 'removeBase',
-        data: {
-          enterpriseCode: id
-        }
-      }).then(function (res) {
-        if (res.result.success == '1') {
-          _this6.loadList();
-          _this6.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
-        } else {
-          _this6.$message.error(res.result.message);
-        }
-      });
-    }
-  }
-});
-
-/***/ }),
-
-/***/ 330:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_index_investList_vue__ = __webpack_require__(411);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_index_investList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_index_investList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_index_formInvest__ = __webpack_require__(405);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_index_formInvest___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_index_formInvest__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_common_util__ = __webpack_require__(50);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {};
-    },
-
-    methods: {
-        getInfo: function getInfo(data) {
-            // 编辑区域获取初始数据
-            this.$refs.editBox.getAllData(data);
-        }
-    },
-    components: {
-        articles: __WEBPACK_IMPORTED_MODULE_0__components_index_investList_vue___default.a,
-        formInvest: __WEBPACK_IMPORTED_MODULE_1__components_index_formInvest___default.a
-    }
-});
-
-/***/ }),
-
-/***/ 344:
+/***/ 221:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(205)(false);
+exports = module.exports = __webpack_require__(182)(false);
 // imports
 
 
 // module
-exports.push([module.i, ".leftBox{width:400px;min-height:100%;background:#f0f0f0}.el-collapse-item__header{font-size:20px;color:#000}", ""]);
+exports.push([module.i, ".upload-box{overflow:hidden;position:relative;cursor:pointer}.upload-box .img-big{cursor:pointer}.upload-box .img-big,.upload-box .img-big img{display:block;width:100%;height:auto}.upload-box .ben-input{display:none}.upload-box .op-btn{float:right;margin:10px 0 0 10px}", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 349:
+/***/ 222:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(205)(false);
+exports = module.exports = __webpack_require__(182)(false);
 // imports
 
 
 // module
-exports.push([module.i, ".form-invest{margin-top:30px}.form-invest .upload-list-box{width:110%}.form-invest .el-dialog--small{width:400px}.form-invest .formStyle{position:relative;width:640px;margin:0 auto}.form-invest .formStyle .edui-default .edui-editor{border-color:#bfcbd9}.form-invest .formStyle .edui-editor-iframeholder{min-height:150px}.form-invest .formStyle .link-btn{position:absolute;right:0;top:7px;width:60px;height:28px;line-height:28px;text-align:center;font-size:12px;border-radius:4px;color:#fff;background-color:#20a0ff}.form-invest .formStyle .add-btn{position:absolute;right:0;top:7px}.form-invest .formStyle .save-btn{float:right;margin-top:10px}.form-invest .formStyle .abInput{position:absolute;right:0;top:4px;height:30px}.form-invest .formStyle:last-child{margin-bottom:30px}.form-invest .clear{clear:both}.form-invest .line-bold{height:9px;border-top:1px solid #99a9bf;background:#f9f9f9;margin:30px 0}.form-invest .el-collapse,.form-invest .el-collapse-item__header,.form-invest .el-collapse-item__wrap{background:#fff;border:none}.form-invest .el-collapse-item__wrap{padding-top:20px;overflow:visible}.form-invest .el-collapse-item__content,.form-invest .el-collapse-item__header{padding:0}.form-invest #container{width:640px;height:180px;margin:0 0 15px}.form-invest .switch-box{width:300px}.form-invest .qx-box{margin-bottom:10px}.form-invest .qx-box .label-box{float:left;width:70px;font-size:14px;color:#666;line-height:30px}.form-invest .qx-box .input-box{float:left;width:220px;margin-right:10px}.form-invest .qx-box .input-box input{height:30px}.form-invest .qx-box .btn-box{font-size:16px}.form-invest .qx-box .btn-box i{cursor:pointer}.form-invest .baseInput{float:left;margin-bottom:20px}.form-invest .baseInput>span{float:left;width:120px;font-size:14px;color:#999;line-height:30px}.form-invest .baseInput .abstract-num{float:right}.form-invest .baseInput .abstract-num span{color:red}.form-invest .baseInput .input-box{float:left;width:185px}.form-invest .baseInput .input-box input{height:30px}.form-invest .baseInput .numBox{float:right;font-size:12px;line-height:20px}.form-invest .baseInput .numBox span{color:#20a0ff}.form-invest .bigB .el-textarea,.form-invest .bigB .input-box,.form-invest .bigB .input-box .el-select{width:520px}.form-invest .rightF{float:right}.form-invest .over-box{width:670px;padding:15px 15px 0;box-sizing:border-box;overflow:hidden;margin-left:-15px}.form-invest .over-box:nth-of-type(2n){background:#f9f9f9}.form-invest .over-box .delete-btn{float:right;margin-bottom:20px;cursor:pointer}.form-invest .over-box .save-sub-btn{float:right;margin-bottom:20px;margin-left:12px}", ""]);
+exports.push([module.i, ".ewm-upload-box{display:inline-block;cursor:pointer;border:1px solid #f5f5f5;border-radius:3px}.ewm-upload-box .img-big{display:block;width:100%;height:160px}.ewm-upload-box .input-u{display:none}.ewm-upload-box .title-box{border:none;padding:0;margin:0;width:100%;border-top:1px solid #f5f5f5;display:block;font-size:14px;text-align:center;line-height:36px}.ewm-upload-box .op-btn{float:right;margin:10px 0 0 10px}", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 354:
+/***/ 223:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(205)(false);
+exports = module.exports = __webpack_require__(182)(false);
 // imports
 
 
 // module
-exports.push([module.i, ".allBox{width:400px;background:#f9f9f9}.allBox .el-dialog__body .el-pagination{padding:0}.allBox .el-dialog__body .el-checkbox-group{max-height:252px;overflow:hidden}.allBox .el-dialog__body .el-checkbox-group .el-checkbox{width:190px;float:left;margin:0;box-sizing:border-box;margin-bottom:15px;margin-right:10px;overflow:hidden}.allBox .el-dialog--small{width:640px}.allBox .search-title{margin:10px 0;padding:0 10px;box-sizing:border-box}.allBox .el-submenu .el-submenu__title{font-size:16px;color:#000;background:#f0f0f0;border-bottom:1px solid #e0e0e0}.allBox .el-submenu .el-submenu__title:hover{background:#eff2f7}.allBox .one-box .add-box{float:right;font-size:30px;margin-right:30px;line-height:56px;margin-top:-4px;color:#000}.allBox .two-box{background:#f9f9f9}.allBox .two-box .add-box{float:right;font-size:30px;margin-right:30px;line-height:56px;margin-top:-4px;color:#000}.allBox .two-box .delete-box{float:right;font-size:18px;margin-right:10px;line-height:52px;color:#000}.allBox .two-box .el-submenu__title{font-size:14px;color:#000;background:#f9f9f9;border-bottom:1px solid #e0e0e0}.allBox .two-box .el-submenu__title:hover{background:#eff2f7}.allBox .two-box .el-menu-item{height:60px;background:#f9f9f9;border-bottom:1px solid #e0e0e0}.allBox .two-box .el-menu-item .lists-box{position:relative;height:60px;box-sizing:border-box;cursor:pointer}.allBox .two-box .el-menu-item .lists-box .img-box{float:left;width:50px;height:30px;margin:15px 15px 0 0;background:#cfcfd0}.allBox .two-box .el-menu-item .lists-box .img-box img{display:block;width:50px;height:30px}.allBox .two-box .el-menu-item .lists-box .p-box{float:left;width:200px;margin-top:10px}.allBox .two-box .el-menu-item .lists-box .p-box .title{display:block;font-size:14px;height:40px;color:#000;line-height:20px;white-space:normal;word-wrap:break-word;word-break:break-all}.allBox .two-box .el-menu-item .lists-box .p-box div{display:none;position:absolute;right:-27px;top:10px;width:48px;height:16px;cursor:pointer}.allBox .two-box .el-menu-item .lists-box .p-box div img{float:right;width:16px;height:16px;margin-left:8px}.allBox .two-box .el-menu-item .lists-box .p-box div img:hover{opacity:.8}.allBox .two-box .el-menu-item.is-active,.allBox .two-box .el-menu-item:hover{background:#eff2f7}.allBox .two-box .el-menu-item:hover .p-box div{display:block}", ""]);
+exports.push([module.i, ".edui-default .edui-editor-bottomContainer{display:none}", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 372:
+/***/ 224:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(182)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".form-invest{margin-top:30px}.form-invest .upload-list-box{width:110%}.form-invest .el-dialog--small{width:400px}.form-invest .formStyle{position:relative;width:640px;margin:0 auto}.form-invest .formStyle .edui-default .edui-editor{border-color:#bfcbd9}.form-invest .formStyle .edui-editor-iframeholder{min-height:150px}.form-invest .formStyle .link-btn{position:absolute;right:0;top:7px;width:60px;height:28px;line-height:28px;text-align:center;font-size:12px;border-radius:4px;color:#fff;background-color:#20a0ff}.form-invest .formStyle .add-btn{position:absolute;right:0;top:7px}.form-invest .formStyle .save-btn{float:right;margin-top:10px}.form-invest .formStyle .abInput{position:absolute;right:0;top:4px;height:30px}.form-invest .formStyle:last-child{margin-bottom:30px}.form-invest .clear{clear:both}.form-invest .line-bold{height:9px;border-top:1px solid #99a9bf;background:#f9f9f9;margin:30px 0}.form-invest .el-collapse,.form-invest .el-collapse-item__header,.form-invest .el-collapse-item__wrap{background:#fff;border:none}.form-invest .el-collapse-item__wrap{padding-top:20px;overflow:visible}.form-invest .el-collapse-item__content{padding:0}.form-invest .el-collapse-item__header{font-size:20px;color:#000;padding:0}.form-invest #container{width:640px;height:180px;margin:0 0 15px}.form-invest .switch-box{width:300px}.form-invest .qx-box{margin-bottom:10px}.form-invest .qx-box .label-box{float:left;width:70px;font-size:14px;color:#666;line-height:30px}.form-invest .qx-box .input-box{float:left;width:220px;margin-right:10px}.form-invest .qx-box .input-box input{height:30px}.form-invest .qx-box .btn-box{font-size:16px}.form-invest .qx-box .btn-box i{cursor:pointer}.form-invest .baseInput{float:left;margin-bottom:20px}.form-invest .baseInput>span{float:left;width:120px;font-size:14px;color:#999;line-height:30px}.form-invest .baseInput .abstract-num{float:right}.form-invest .baseInput .abstract-num span{color:red}.form-invest .baseInput .input-box{float:left;width:185px}.form-invest .baseInput .input-box input{height:30px}.form-invest .baseInput .numBox{float:right;font-size:12px;line-height:20px}.form-invest .baseInput .numBox span{color:#20a0ff}.form-invest .bigB .el-textarea,.form-invest .bigB .input-box,.form-invest .bigB .input-box .el-select{width:520px}.form-invest .rightF{float:right}.form-invest .over-box{width:670px;padding:15px 15px 0;box-sizing:border-box;overflow:hidden;margin-left:-15px}.form-invest .over-box:nth-of-type(2n){background:#f9f9f9}.form-invest .over-box .delete-btn{float:right;margin-bottom:20px;cursor:pointer}.form-invest .over-box .save-sub-btn{float:right;margin-bottom:20px;margin-left:12px}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 225:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(344);
+var content = __webpack_require__(221);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(248)("674a9c0b", content, true);
+var update = __webpack_require__(215)("591888f2", content, true);
 
 /***/ }),
 
-/***/ 377:
+/***/ 226:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(349);
+var content = __webpack_require__(222);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(248)("7a3fb8fc", content, true);
+var update = __webpack_require__(215)("533488ba", content, true);
 
 /***/ }),
 
-/***/ 382:
+/***/ 227:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(354);
+var content = __webpack_require__(223);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(248)("7a064b2e", content, true);
+var update = __webpack_require__(215)("5c46745c", content, true);
 
 /***/ }),
 
-/***/ 405:
+/***/ 228:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(224);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(215)("2fcf4a2e", content, true);
+
+/***/ }),
+
+/***/ 229:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "static/img/page-img.9008604.jpg";
+
+/***/ }),
+
+/***/ 230:
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
-  __webpack_require__(377)
+  __webpack_require__(226)
 }
-var Component = __webpack_require__(31)(
+var Component = __webpack_require__(24)(
   /* script */
-  __webpack_require__(316),
+  __webpack_require__(217),
   /* template */
-  __webpack_require__(427),
+  __webpack_require__(234),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -12359,17 +11376,17 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 411:
+/***/ 231:
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
-  __webpack_require__(382)
+  __webpack_require__(227)
 }
-var Component = __webpack_require__(31)(
+var Component = __webpack_require__(24)(
   /* script */
-  __webpack_require__(322),
+  __webpack_require__(218),
   /* template */
-  __webpack_require__(432),
+  __webpack_require__(235),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -12383,39 +11400,180 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 422:
-/***/ (function(module, exports) {
+/***/ 232:
+/***/ (function(module, exports, __webpack_require__) {
+
+function injectStyle (ssrContext) {
+  __webpack_require__(225)
+}
+var Component = __webpack_require__(24)(
+  /* script */
+  __webpack_require__(219),
+  /* template */
+  __webpack_require__(233),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 233:
+/***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "float-box flexBox"
-  }, [_c('section', {
-    staticClass: "leftBox"
-  }, [_c('articles', {
-    ref: "listBox",
-    on: {
-      "getInfo": _vm.getInfo
+  return _c('div', [_c('section', {
+    staticClass: "upload-box"
+  }, [_c('label', {
+    staticClass: "img-big",
+    attrs: {
+      "for": _vm.idFor
     }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "body-mid flexItem"
-  }, [_c('form-invest', {
-    ref: "editBox"
-  })], 1)])
+  }, [(!_vm.curPath && !_vm.bgPath) ? _c('img', {
+    attrs: {
+      "src": __webpack_require__(216)
+    }
+  }) : _vm._e(), _vm._v(" "), (!_vm.curPath && _vm.bgPath) ? _c('img', {
+    attrs: {
+      "src": __webpack_require__(229)
+    }
+  }) : _c('img', {
+    staticClass: "img-big",
+    attrs: {
+      "src": _vm.curPath
+    }
+  })]), _vm._v(" "), (_vm.isOperate) ? _c('input', {
+    staticClass: "ben-input",
+    attrs: {
+      "type": "file",
+      "id": _vm.idFor
+    },
+    on: {
+      "change": function($event) {
+        _vm.postImg($event)
+      }
+    }
+  }) : _vm._e(), _vm._v(" "), (_vm.isBtn) ? _c('section', [(!_vm.noSave) ? _c('el-button', {
+    staticClass: "op-btn",
+    attrs: {
+      "type": "info",
+      "plain": true,
+      "size": "small",
+      "icon": "document"
+    },
+    on: {
+      "click": _vm.savePath
+    }
+  }, [_vm._v("保存")]) : _vm._e(), _vm._v(" "), (!_vm.noDel) ? _c('el-button', {
+    staticClass: "op-btn",
+    attrs: {
+      "type": "danger",
+      "plain": true,
+      "size": "small",
+      "icon": "delete"
+    },
+    on: {
+      "click": _vm.deleImg
+    }
+  }, [_vm._v("删除")]) : _vm._e(), _vm._v(" "), (!_vm.noDel) ? _c('el-button', {
+    staticClass: "op-btn",
+    attrs: {
+      "type": "danger",
+      "plain": true,
+      "size": "small",
+      "icon": "delete"
+    },
+    on: {
+      "click": _vm.deleImg
+    }
+  }, [_vm._v("移动")]) : _vm._e()], 1) : _vm._e()])])
 },staticRenderFns: []}
 
 /***/ }),
 
-/***/ 427:
+/***/ 234:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "ewm-upload-box",
+    style: ({
+      width: _vm.width
+    })
+  }, [_c('label', {
+    attrs: {
+      "for": _vm.idName
+    }
+  }, [(!_vm.curPath) ? _c('img', {
+    staticClass: "img-big",
+    attrs: {
+      "src": __webpack_require__(216)
+    }
+  }) : _c('img', {
+    staticClass: "img-big",
+    attrs: {
+      "src": _vm.curPath
+    }
+  })]), _vm._v(" "), (_vm.isOperate) ? _c('input', {
+    staticClass: "input-u",
+    attrs: {
+      "id": _vm.idName,
+      "type": "file",
+      "name": ""
+    },
+    on: {
+      "change": _vm.postImg
+    }
+  }) : _vm._e(), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.curTitle),
+      expression: "curTitle"
+    }],
+    staticClass: "title-box",
+    attrs: {
+      "placeholder": _vm.placeHolder
+    },
+    domProps: {
+      "value": (_vm.curTitle)
+    },
+    on: {
+      "input": [function($event) {
+        if ($event.target.composing) { return; }
+        _vm.curTitle = $event.target.value
+      }, _vm.changeTitle]
+    }
+  })])
+},staticRenderFns: []}
+
+/***/ }),
+
+/***/ 235:
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('div', {
+    attrs: {
+      "id": _vm.editorId,
+      "type": "text/plain"
+    }
+  })])
+},staticRenderFns: []}
+
+/***/ }),
+
+/***/ 236:
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.isId),
-      expression: "isId"
-    }],
     staticClass: "form-invest"
   }, [_c('el-collapse', {
     on: {
@@ -12449,7 +11607,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseCname),
       callback: function($$v) {
-        _vm.base.enterpriseCname = $$v
+        _vm.$set(_vm.base, "enterpriseCname", $$v)
       },
       expression: "base.enterpriseCname"
     }
@@ -12464,7 +11622,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseNameReg),
       callback: function($$v) {
-        _vm.base.enterpriseNameReg = $$v
+        _vm.$set(_vm.base, "enterpriseNameReg", $$v)
       },
       expression: "base.enterpriseNameReg"
     }
@@ -12479,7 +11637,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseCreditLevel),
       callback: function($$v) {
-        _vm.base.enterpriseCreditLevel = $$v
+        _vm.$set(_vm.base, "enterpriseCreditLevel", $$v)
       },
       expression: "base.enterpriseCreditLevel"
     }
@@ -12509,7 +11667,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseWebLink),
       callback: function($$v) {
-        _vm.base.enterpriseWebLink = $$v
+        _vm.$set(_vm.base, "enterpriseWebLink", $$v)
       },
       expression: "base.enterpriseWebLink"
     }
@@ -12523,7 +11681,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseLegalPerson),
       callback: function($$v) {
-        _vm.base.enterpriseLegalPerson = $$v
+        _vm.$set(_vm.base, "enterpriseLegalPerson", $$v)
       },
       expression: "base.enterpriseLegalPerson"
     }
@@ -12537,7 +11695,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseCode),
       callback: function($$v) {
-        _vm.base.enterpriseCode = $$v
+        _vm.$set(_vm.base, "enterpriseCode", $$v)
       },
       expression: "base.enterpriseCode"
     }
@@ -12552,7 +11710,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseOpenTime),
       callback: function($$v) {
-        _vm.base.enterpriseOpenTime = $$v
+        _vm.$set(_vm.base, "enterpriseOpenTime", $$v)
       },
       expression: "base.enterpriseOpenTime"
     }
@@ -12568,7 +11726,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseIndustry),
       callback: function($$v) {
-        _vm.base.enterpriseIndustry = $$v
+        _vm.$set(_vm.base, "enterpriseIndustry", $$v)
       },
       expression: "base.enterpriseIndustry"
     }
@@ -12595,7 +11753,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseRegPlace),
       callback: function($$v) {
-        _vm.base.enterpriseRegPlace = $$v
+        _vm.$set(_vm.base, "enterpriseRegPlace", $$v)
       },
       expression: "base.enterpriseRegPlace"
     }
@@ -12613,7 +11771,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseLogisticCity),
       callback: function($$v) {
-        _vm.base.enterpriseLogisticCity = $$v
+        _vm.$set(_vm.base, "enterpriseLogisticCity", $$v)
       },
       expression: "base.enterpriseLogisticCity"
     }
@@ -12641,7 +11799,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseLogisticZipcode),
       callback: function($$v) {
-        _vm.base.enterpriseLogisticZipcode = $$v
+        _vm.$set(_vm.base, "enterpriseLogisticZipcode", $$v)
       },
       expression: "base.enterpriseLogisticZipcode"
     }
@@ -12655,7 +11813,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseLogisticAddr),
       callback: function($$v) {
-        _vm.base.enterpriseLogisticAddr = $$v
+        _vm.$set(_vm.base, "enterpriseLogisticAddr", $$v)
       },
       expression: "base.enterpriseLogisticAddr"
     }
@@ -12670,7 +11828,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseStockSite),
       callback: function($$v) {
-        _vm.base.enterpriseStockSite = $$v
+        _vm.$set(_vm.base, "enterpriseStockSite", $$v)
       },
       expression: "base.enterpriseStockSite"
     }
@@ -12697,7 +11855,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseStockCode),
       callback: function($$v) {
-        _vm.base.enterpriseStockCode = $$v
+        _vm.$set(_vm.base, "enterpriseStockCode", $$v)
       },
       expression: "base.enterpriseStockCode"
     }
@@ -12714,7 +11872,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseTotalAsset),
       callback: function($$v) {
-        _vm.base.enterpriseTotalAsset = $$v
+        _vm.$set(_vm.base, "enterpriseTotalAsset", $$v)
       },
       expression: "base.enterpriseTotalAsset"
     }
@@ -12731,7 +11889,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseAssetLiabilityRatio),
       callback: function($$v) {
-        _vm.base.enterpriseAssetLiabilityRatio = $$v
+        _vm.$set(_vm.base, "enterpriseAssetLiabilityRatio", $$v)
       },
       expression: "base.enterpriseAssetLiabilityRatio"
     }
@@ -12748,7 +11906,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseCapitalAdequacyRatio),
       callback: function($$v) {
-        _vm.base.enterpriseCapitalAdequacyRatio = $$v
+        _vm.$set(_vm.base, "enterpriseCapitalAdequacyRatio", $$v)
       },
       expression: "base.enterpriseCapitalAdequacyRatio"
     }
@@ -12765,7 +11923,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseCoreCapitialAdequacyRatio),
       callback: function($$v) {
-        _vm.base.enterpriseCoreCapitialAdequacyRatio = $$v
+        _vm.$set(_vm.base, "enterpriseCoreCapitialAdequacyRatio", $$v)
       },
       expression: "base.enterpriseCoreCapitialAdequacyRatio"
     }
@@ -12782,7 +11940,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseDepositLoanRatio),
       callback: function($$v) {
-        _vm.base.enterpriseDepositLoanRatio = $$v
+        _vm.$set(_vm.base, "enterpriseDepositLoanRatio", $$v)
       },
       expression: "base.enterpriseDepositLoanRatio"
     }
@@ -12799,7 +11957,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseNplRatio),
       callback: function($$v) {
-        _vm.base.enterpriseNplRatio = $$v
+        _vm.$set(_vm.base, "enterpriseNplRatio", $$v)
       },
       expression: "base.enterpriseNplRatio"
     }
@@ -12816,7 +11974,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseProvisionCoverage),
       callback: function($$v) {
-        _vm.base.enterpriseProvisionCoverage = $$v
+        _vm.$set(_vm.base, "enterpriseProvisionCoverage", $$v)
       },
       expression: "base.enterpriseProvisionCoverage"
     }
@@ -12833,7 +11991,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     model: {
       value: (_vm.base.enterpriseAssetsReturn),
       callback: function($$v) {
-        _vm.base.enterpriseAssetsReturn = $$v
+        _vm.$set(_vm.base, "enterpriseAssetsReturn", $$v)
       },
       expression: "base.enterpriseAssetsReturn"
     }
@@ -12844,7 +12002,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('upload', {
     attrs: {
       "path": _vm.base.enterpriseLogoUrl,
-      "is-operate": _vm.isOperate,
+      "is-operate": true,
       "no-del": true,
       "bg-path": true,
       "is-house-id": true
@@ -12867,7 +12025,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }) : _vm._e()], 1)]), _vm._v(" "), _c('div', {
     staticClass: "clear"
-  })]), _vm._v(" "), (_vm.isOperate) ? _c('el-button', {
+  })]), _vm._v(" "), _c('el-button', {
     staticClass: "save-btn",
     attrs: {
       "type": "info",
@@ -12878,7 +12036,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.saveBase
     }
-  }, [_vm._v("保存")]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("保存")]), _vm._v(" "), _c('div', {
     staticClass: "clear"
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "line-bold"
@@ -12896,7 +12054,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "title-name": _vm.base.enterprisePubwechatAccount,
       "place-holder": '请输入微信公众号',
       "id-name": 'wxPulic',
-      "is-operate": _vm.isOperate,
+      "is-operate": true,
       "width": '160px'
     },
     on: {
@@ -12908,7 +12066,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "title-name": _vm.base.enterpriseTwitterAccount,
       "place-holder": '请输入twitter账号',
       "id-name": 'twitterName',
-      "is-operate": _vm.isOperate,
+      "is-operate": true,
       "width": '160px'
     },
     on: {
@@ -12920,7 +12078,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "title-name": _vm.base.enterpriseFacebookAccount,
       "place-holder": '请输入facebook账号',
       "id-name": 'facebookName',
-      "is-operate": _vm.isOperate,
+      "is-operate": true,
       "width": '160px'
     },
     on: {
@@ -12932,7 +12090,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "title-name": _vm.base.enterpriseSinamicorblogAccount,
       "place-holder": '请输入微博账号',
       "id-name": 'wbName',
-      "is-operate": _vm.isOperate,
+      "is-operate": true,
       "width": '160px'
     },
     on: {
@@ -12940,7 +12098,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "clear"
-  }), _vm._v(" "), (_vm.isOperate) ? _c('el-button', {
+  }), _vm._v(" "), _c('el-button', {
     staticClass: "save-btn",
     attrs: {
       "type": "info",
@@ -12951,9 +12109,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.saveBase
     }
-  }, [_vm._v("保存")]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("保存")]), _vm._v(" "), _c('div', {
     staticClass: "clear"
-  })], 1), _vm._v(" "), (_vm.isQYGL) ? [_c('div', {
+  })], 1), _vm._v(" "), [_c('div', {
     staticClass: "line-bold"
   }), _vm._v(" "), _c('el-collapse-item', {
     staticClass: "formStyle",
@@ -12961,29 +12119,27 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "title": "企业管理员",
       "name": "3"
     }
-  }, [(_vm.isOperate) ? _c('span', {
+  }, [_c('span', {
     staticClass: "link-btn",
     on: {
-      "click": function($event) {
-        _vm.addRole('roleQYGL')
-      }
+      "click": _vm.addRole
     }
-  }, [_vm._v("新增")]) : _vm._e(), _vm._v(" "), _c('el-table', {
+  }, [_vm._v("新增")]), _vm._v(" "), _c('el-table', {
     staticStyle: {
       "width": "100%"
     },
     attrs: {
-      "data": _vm.roleList.roleQYGL,
+      "data": _vm.roleList,
       "border": ""
     }
   }, [_c('el-table-column', {
     attrs: {
-      "prop": "userName",
+      "prop": "memberCname",
       "label": "用户名"
     }
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
-      "prop": "userTel",
+      "prop": "memberMobile",
       "label": "手机号"
     }
   }), _vm._v(" "), _c('el-table-column', {
@@ -13004,160 +12160,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         })]
       }
     }])
-  })], 1)], 1)] : _vm._e(), _vm._v(" "), (_vm.isBGGL) ? [_c('div', {
-    staticClass: "line-bold"
-  }), _vm._v(" "), _c('el-collapse-item', {
-    staticClass: "formStyle",
-    attrs: {
-      "title": "报告管理员",
-      "name": "4"
-    }
-  }, [(_vm.isOperate) ? _c('span', {
-    staticClass: "link-btn",
-    on: {
-      "click": function($event) {
-        _vm.addRole('roleBGGL')
-      }
-    }
-  }, [_vm._v("新增")]) : _vm._e(), _vm._v(" "), _c('el-table', {
-    staticStyle: {
-      "width": "100%"
-    },
-    attrs: {
-      "data": _vm.roleList.roleBGGL,
-      "border": ""
-    }
-  }, [_c('el-table-column', {
-    attrs: {
-      "prop": "userName",
-      "label": "用户名"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "userTel",
-      "label": "手机号"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "label": "操作",
-      "width": "80"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function(scope) {
-        return [_c('i', {
-          staticClass: "el-icon-delete2",
-          on: {
-            "click": function($event) {
-              _vm.deleteRole(scope.row)
-            }
-          }
-        })]
-      }
-    }])
-  })], 1)], 1)] : _vm._e(), _vm._v(" "), (_vm.isWYGL) ? [_c('div', {
-    staticClass: "line-bold"
-  }), _vm._v(" "), _c('el-collapse-item', {
-    staticClass: "formStyle",
-    attrs: {
-      "title": "物业管理员",
-      "name": "6"
-    }
-  }, [(_vm.isOperate) ? _c('span', {
-    staticClass: "link-btn",
-    on: {
-      "click": function($event) {
-        _vm.addRole('roleWYGL')
-      }
-    }
-  }, [_vm._v("新增")]) : _vm._e(), _vm._v(" "), _c('el-table', {
-    staticStyle: {
-      "width": "100%"
-    },
-    attrs: {
-      "data": _vm.roleList.roleWYGL,
-      "border": ""
-    }
-  }, [_c('el-table-column', {
-    attrs: {
-      "prop": "userName",
-      "label": "用户名"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "userTel",
-      "label": "手机号"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "label": "操作",
-      "width": "80"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function(scope) {
-        return [_c('i', {
-          staticClass: "el-icon-delete2",
-          on: {
-            "click": function($event) {
-              _vm.deleteRole(scope.row)
-            }
-          }
-        })]
-      }
-    }])
-  })], 1)], 1)] : _vm._e(), _vm._v(" "), (_vm.isZQCP) ? [_c('div', {
-    staticClass: "line-bold"
-  }), _vm._v(" "), _c('el-collapse-item', {
-    staticClass: "formStyle",
-    attrs: {
-      "title": "证券产品管理员",
-      "name": "8"
-    }
-  }, [(_vm.isOperate) ? _c('span', {
-    staticClass: "link-btn",
-    on: {
-      "click": function($event) {
-        _vm.addRole('roleZQCP')
-      }
-    }
-  }, [_vm._v("新增")]) : _vm._e(), _vm._v(" "), _c('el-table', {
-    staticStyle: {
-      "width": "100%"
-    },
-    attrs: {
-      "data": _vm.roleList.roleZQCP,
-      "border": ""
-    }
-  }, [_c('el-table-column', {
-    attrs: {
-      "prop": "userName",
-      "label": "用户名"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "userTel",
-      "label": "手机号"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "label": "操作",
-      "width": "80"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function(scope) {
-        return [_c('i', {
-          staticClass: "el-icon-delete2",
-          on: {
-            "click": function($event) {
-              _vm.deleteRole(scope.row)
-            }
-          }
-        })]
-      }
-    }])
-  })], 1)], 1)] : _vm._e()], 2), _vm._v(" "), _c('el-dialog', {
+  })], 1)], 1)]], 2), _vm._v(" "), _c('el-dialog', {
     attrs: {
       "title": "添加用户",
       "visible": _vm.isAddRole
@@ -13182,11 +12185,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "size": "small"
     },
     model: {
-      value: (_vm.addRoleData.userName),
+      value: (_vm.addRoleData.memberCname),
       callback: function($$v) {
-        _vm.addRoleData.userName = $$v
+        _vm.$set(_vm.addRoleData, "memberCname", $$v)
       },
-      expression: "addRoleData.userName"
+      expression: "addRoleData.memberCname"
     }
   })], 1), _vm._v(" "), _c('el-form-item', {
     attrs: {
@@ -13199,11 +12202,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "size": "small"
     },
     model: {
-      value: (_vm.addRoleData.userTel),
+      value: (_vm.addRoleData.memberMobile),
       callback: function($$v) {
-        _vm.addRoleData.userTel = $$v
+        _vm.$set(_vm.addRoleData, "memberMobile", $$v)
       },
-      expression: "addRoleData.userTel"
+      expression: "addRoleData.memberMobile"
     }
   })], 1)], 1), _vm._v(" "), _c('div', {
     staticClass: "dialog-footer",
@@ -13222,156 +12225,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "primary"
     },
     on: {
-      "click": function($event) {
-        _vm.confirmAddRole(_vm.addRoleData)
-      }
-    }
-  }, [_vm._v("确 定")])], 1)], 1)], 1)
-},staticRenderFns: []}
-
-/***/ }),
-
-/***/ 432:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "allBox"
-  }, [_c('el-input', {
-    staticClass: "search-title",
-    attrs: {
-      "placeholder": "输入关键字进行过滤"
-    },
-    model: {
-      value: (_vm.filterText),
-      callback: function($$v) {
-        _vm.filterText = $$v
-      },
-      expression: "filterText"
-    }
-  }), _vm._v(" "), _c('el-menu', {
-    staticClass: "el-menu-vertical-demo",
-    attrs: {
-      "default-active": _vm.activeName,
-      "default-openeds": _vm.openeds
-    }
-  }, _vm._l((_vm.treeData), function(item1, index1) {
-    return _c('el-submenu', {
-      staticClass: "two-box",
-      attrs: {
-        "index": index1 + ''
-      }
-    }, [_c('template', {
-      attrs: {
-        "slot": "title"
-      },
-      slot: "title"
-    }, [_vm._v("\n        " + _vm._s(item1.dictKeyValue) + "\n\n        "), (_vm.isAddInvest) ? _c('span', {
-      staticClass: "add-box",
-      on: {
-        "click": function($event) {
-          $event.stopPropagation();
-          _vm.setData(item1, index1)
-        }
-      }
-    }, [_vm._v("\n        +\n        ")]) : _vm._e()]), _vm._v(" "), _vm._l((item1.childNodes), function(item2, index2) {
-      return _c('el-menu-item', {
-        attrs: {
-          "index": index1 + '-' + index2
-        }
-      }, [_c('div', {
-        staticClass: "lists-box",
-        on: {
-          "click": function($event) {
-            _vm.getInfo(item1.dictKeyCode, item2.enterpriseCode, index1, index2)
-          }
-        }
-      }, [_c('div', {
-        staticClass: "img-box"
-      }, [(item2.enterpriseLogoUrl) ? _c('img', {
-        attrs: {
-          "src": item2.enterpriseLogoUrl
-        }
-      }) : _vm._e()]), _vm._v(" "), _c('div', {
-        staticClass: "p-box"
-      }, [_c('span', {
-        staticClass: "title"
-      }, [_vm._v(_vm._s(item2.enterpriseCname))]), _vm._v(" "), _c('div', [(_vm.isDelete) ? _c('img', {
-        attrs: {
-          "src": __webpack_require__(249)
-        },
-        on: {
-          "click": function($event) {
-            $event.stopPropagation();
-            _vm.delItem(item2.enterpriseCode)
-          }
-        }
-      }) : _vm._e()])])])])
-    })], 2)
-  })), _vm._v(" "), _c('el-dialog', {
-    attrs: {
-      "title": "添加机构",
-      "visible": _vm.isAddTreeOne
-    },
-    on: {
-      "update:visible": function($event) {
-        _vm.isAddTreeOne = $event
-      }
-    }
-  }, [_c('el-form', {
-    attrs: {
-      "label-position": 'left',
-      "model": _vm.addFormOne,
-      "label-width": "80px"
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "标题"
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.addFormOne.title),
-      callback: function($$v) {
-        _vm.addFormOne.title = $$v
-      },
-      expression: "addFormOne.title"
-    }
-  })], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "简称"
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.addFormOne.enterpriseNameReg),
-      callback: function($$v) {
-        _vm.addFormOne.enterpriseNameReg = $$v
-      },
-      expression: "addFormOne.enterpriseNameReg"
-    }
-  })], 1)], 1), _vm._v(" "), _c('div', {
-    staticClass: "dialog-footer",
-    attrs: {
-      "slot": "footer"
-    },
-    slot: "footer"
-  }, [_c('el-button', {
-    on: {
-      "click": function($event) {
-        _vm.isAddTreeOne = false
-      }
-    }
-  }, [_vm._v("取 消")]), _vm._v(" "), _c('el-button', {
-    attrs: {
-      "type": "primary"
-    },
-    on: {
-      "click": _vm.confirmAdd
+      "click": _vm.confirmAddRole
     }
   }, [_vm._v("确 定")])], 1)], 1)], 1)
 },staticRenderFns: []}
