@@ -10878,6 +10878,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -11893,7 +11895,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "base.enterpriseAssetLiabilityRatio"
     }
-  })], 1), _vm._v(" "), _c('section', {
+  })], 1), _vm._v(" "), (['propertys_investmen_type_3', 'propertys_investmen_type_4'].indexOf(_vm.base.enterpriseIndustry) > -1) ? [_c('section', {
     staticClass: "baseInput"
   }, [_c('span', [_vm._v("资本充足率(%)")]), _vm._v(" "), _c('el-input', {
     staticClass: "input-box",
@@ -11995,7 +11997,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "base.enterpriseAssetsReturn"
     }
-  })], 1), _vm._v(" "), _c('section', {
+  })], 1)] : _vm._e(), _vm._v(" "), _c('section', {
     staticClass: "baseInput bigB"
   }, [_c('span', [_vm._v("公司图片")]), _vm._v(" "), _c('div', {
     staticClass: "input-box"
@@ -12025,7 +12027,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }) : _vm._e()], 1)]), _vm._v(" "), _c('div', {
     staticClass: "clear"
-  })]), _vm._v(" "), _c('el-button', {
+  })], 2), _vm._v(" "), _c('el-button', {
     staticClass: "save-btn",
     attrs: {
       "type": "info",
@@ -12116,7 +12118,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('el-collapse-item', {
     staticClass: "formStyle",
     attrs: {
-      "title": "企业管理员",
+      "title": "用户授权",
       "name": "3"
     }
   }, [_c('span', {
