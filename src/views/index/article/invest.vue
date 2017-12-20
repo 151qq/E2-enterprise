@@ -468,6 +468,7 @@
                     interface: 'deleteMember',
                     data: {
                         id: item.id,
+                        memberCode: item.memberCode,
                         memberStatus: '-1'
                     }
                 }).then(res => {

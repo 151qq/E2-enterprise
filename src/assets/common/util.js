@@ -134,6 +134,7 @@ export default {
                 }
             }
             let config = {
+                timeout: 50000,
                 headers: {'Content-Type': 'multipart/form-data'}
             };  //添加请求头
             axios.post(interfaces.interfaces[option.url], param, config)
