@@ -11029,6 +11029,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 interface: 'deleteMember',
                 data: {
                     id: item.id,
+                    memberCode: item.memberCode,
                     memberStatus: '-1'
                 }
             }).then(res => {
@@ -12164,7 +12165,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }])
   })], 1)], 1)]], 2), _vm._v(" "), _c('el-dialog', {
     attrs: {
-      "title": "添加用户",
+      "title": "添加企业会员",
       "visible": _vm.isAddRole
     },
     on: {

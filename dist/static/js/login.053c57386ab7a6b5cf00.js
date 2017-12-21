@@ -13484,6 +13484,7 @@ module.exports = g;
                 }
             }
             let config = {
+                timeout: 50000,
                 headers: { 'Content-Type': 'multipart/form-data' }
             }; //添加请求头
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(__WEBPACK_IMPORTED_MODULE_2__interfaces__["a" /* default */].interfaces[option.url], param, config).then(response => {

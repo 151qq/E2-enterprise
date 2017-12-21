@@ -301,7 +301,7 @@
                 </el-collapse-item>
             </template>
         </el-collapse>
-        <el-dialog title="添加用户" :visible.sync="isAddRole">
+        <el-dialog title="添加企业会员" :visible.sync="isAddRole">
             <el-form :label-position="'left'">
                 <el-form-item label="用户名" :label-width="'80px'">
                   <el-input class="table-input-box" size="small"

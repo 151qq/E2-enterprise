@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "static/js/" + chunkId + "." + {"0":"9c16aaddbe2550fb6275"}[chunkId] + ".js";
+/******/ 		script.src = __webpack_require__.p + "static/js/" + chunkId + "." + {"0":"f05bcef2cc3cb83c86e5"}[chunkId] + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -13566,6 +13566,7 @@ module.exports = g;
                 }
             }
             let config = {
+                timeout: 50000,
                 headers: { 'Content-Type': 'multipart/form-data' }
             }; //添加请求头
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(__WEBPACK_IMPORTED_MODULE_2__interfaces__["a" /* default */].interfaces[option.url], param, config).then(response => {
